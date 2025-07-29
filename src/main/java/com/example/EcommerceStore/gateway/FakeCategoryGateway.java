@@ -3,7 +3,9 @@ package com.example.EcommerceStore.gateway;
 
 import com.example.EcommerceStore.api.FakeStoreCategoryApi;
 import com.example.EcommerceStore.dto.CategoryDTO;
+import com.example.EcommerceStore.dto.FakeStoreProductResponseDTO;
 import com.example.EcommerceStore.dto.FakeStoryCategoryResponseDTO;
+import com.example.EcommerceStore.dto.ProductDTO;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -29,4 +31,7 @@ public class FakeCategoryGateway implements ICategoryGateway{
                         .build())
                         .toList();
     }
+
+
+
 }

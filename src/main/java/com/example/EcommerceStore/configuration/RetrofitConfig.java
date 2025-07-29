@@ -1,8 +1,12 @@
 package com.example.EcommerceStore.configuration;
 
-import com.example.EcommerceStore.api.FakeStoreCategoryApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.example.EcommerceStore.api.FakeStoreCategoryApi;
+import com.example.EcommerceStore.api.FakeStoreProductApi;
+
+import io.github.cdimascio.dotenv.Dotenv;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -12,7 +16,7 @@ public class RetrofitConfig {
     @Bean
     public Retrofit retrofit(){
         return new Retrofit.Builder()
-                .baseUrl("https://fakestoreapi.in/api/")
+                .baseUrl(Dotenv.load().get("BASE_URI"))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
@@ -22,6 +26,9 @@ public class RetrofitConfig {
         return retrofit.create(FakeStoreCategoryApi.class);
     }
 
-
+    @Bean
+    public FakeStoreProductApi fakeStoreProductApi(Retrofit retrofit){
+        return retrofit.create(FakeStoreProductApi.class);
+    }
 
 }
